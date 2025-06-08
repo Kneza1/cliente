@@ -1,7 +1,7 @@
 package com.api.cliente.controllers;
 
-import com.clientes.dto.ClienteDTO;
-import com.clientes.services.ClienteService;
+import com.api.cliente.dto.ClienteDTO;
+import com.api.cliente.services.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

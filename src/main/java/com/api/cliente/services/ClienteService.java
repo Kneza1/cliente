@@ -1,8 +1,8 @@
 package com.api.cliente.services;
 
-import com.cliente.dto.ClienteDTO;
-import com.cliente.models.Cliente;
-import com.cliente.repository.ClienteRepository;
+import com.api.cliente.dto.ClienteDTO;
+import com.api.cliente.models.Cliente;
+import com.api.cliente.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
