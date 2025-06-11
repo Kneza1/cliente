@@ -1,5 +1,6 @@
 package com.api.cliente.dto;
 
+
 import lombok.Data;
 
 @Data
@@ -10,4 +11,5 @@ public class ClienteDTO {
     private String rut;
     private String direccion;
     private String telefono;
+
 }

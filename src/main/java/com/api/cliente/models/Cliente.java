@@ -13,12 +13,8 @@ public class Cliente {
     private Integer idCliente;
 
     private Integer idUsuario;
-
     private String nombreCompleto;
-
     private String rut;
-
     private String direccion;
-
     private String telefono;
 }
