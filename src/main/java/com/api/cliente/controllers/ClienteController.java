@@ -5,6 +5,8 @@ import com.api.cliente.services.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo; 
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;  
 
 import java.util.List;
 
@@ -45,5 +47,21 @@ public class ClienteController {
                 ? ResponseEntity.noContent().build()
                 : ResponseEntity.notFound().build();
     }
-
+    @GetMapping("/hateoas/{id}")
+    public ClienteDTO obtenerHATEOAS(@PathVariable Integer id) { 
+        ClienteDTO dto = service.obtenerPorId(id)
+                .orElseThrow(() -> new RuntimeException("Cliente no encontrado")); 
+        dto.add(linkTo(methodOn(ClienteController.class).obtenerHATEOAS(id)).withSelfRel()); 
+        dto.add(linkTo(methodOn(ClienteController.class).obtenerTodosHATEOAS()).withRel("todos")); 
+        dto.add(linkTo(methodOn(ClienteController.class).eliminar(id)).withRel("eliminar")); 
+        return dto;
+    }
+    @GetMapping("/hateoas") 
+    public List<ClienteDTO> obtenerTodosHATEOAS() { 
+        List<ClienteDTO> lista = service.listar(); 
+            for (ClienteDTO dto : lista) { 
+            dto.add(linkTo(methodOn(ClienteController.class).obtenerHATEOAS(dto.getIdCliente())).withSelfRel()); 
+    } 
+    return lista; 
+} 
 }
